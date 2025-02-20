@@ -1,0 +1,27 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-main: #e60012;
+  --text-primary: #fff;
+  --font-quicksand: 'Quicksand Variable', sans-serif;
+}
+
+@layer base {
+  :where(html, body) {
+    height: 100%;
+  }
+
+  body {
+    color: var(--text-primary);
+    letter-spacing: 0.1rem;
+    font-weight: 500;
+    font-family: 'Noto Sans JP Variable', sans-serif;
+    background-color: var(--color-main);
+  }
+}
+
+@layer utilities {
+  .text-arial {
+    font-family: Arial, Helvetica, sans-serif;
+  }
+}
