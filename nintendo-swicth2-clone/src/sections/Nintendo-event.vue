@@ -36,7 +36,7 @@
           @click="navigateTo"
         >
           Learn More
-          <ArrowSvg class="size-4" />
+          <ArrowSvg class="size-4 lg:w-[.96vw]" />
         </ButtonBase>
       </template>
     </CardInfo>
@@ -49,6 +49,7 @@
 import SwipperCarousel from '@/components/Swipper-carousel.vue'
 import ButtonBase from '@/components/Button-base.vue'
 import CardInfo from '@/components/Card-info.vue'
+import ArrowSvg from '@/icons/Arrow-svg.vue'
 
 const navigateTo = (): void => {
   window.location.href = 'https://www.nintendo.com/us/nintendo-switch-2-experience/'
@@ -56,4 +57,3 @@ const navigateTo = (): void => {
 </script>
 
 <style></style>
-<!-- absolute top-[50%] -translate-y-[50%] right-[5.86vw] z-10 top-0 -->

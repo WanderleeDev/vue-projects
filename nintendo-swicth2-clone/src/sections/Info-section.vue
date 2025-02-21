@@ -13,7 +13,7 @@
     </picture>
 
     <div
-      class="flex justify-center items-center flex-col gap-[7vw] md:gap-10 pt-[11vw] md:py-20 relative z-10 px-6 sm:px-16 xl:gap-16"
+      class="flex justify-center items-center flex-col gap-[7vw] md:gap-10 pt-[11vw] md:py-20 relative z-10 px-6 sm:px-16 xl:gap-[2vw]"
     >
       <picture>
         <source
@@ -23,17 +23,15 @@
           :srcset="url"
         />
         <img
-          class="mx-auto sm:max-w-md md:max-w-lg lg:max-w-2xl xl:max-w-4xl"
+          class="mx-auto md:w-[65.38vw] lg:w-[74vw]"
           :src="messageImages[0]"
           alt="You can play Nintendo Switch 2 exclusive games, as well as Nintendo Switch games, on Nintendo Switch 2."
           loading="lazy"
         />
       </picture>
-      <div
-        class="font-normal flex justify-items-center items-start flex-col max-w-5xl md:items-center"
-      >
+      <div class="font-normal flex justify-items-center items-start flex-col md:items-center">
         <p
-          class="text-[2.3vw] text-left md:text-center white sm:text-[15px]"
+          class="text-[2.3vw] text-left md:text-center white sm:text-[15px] md:text-[1.59vw] lg:text-[.96vw]"
           v-for="(paragraph, i) in paragraphs"
           :key="i"
         >

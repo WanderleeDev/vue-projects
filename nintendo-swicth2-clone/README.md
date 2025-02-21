@@ -3,6 +3,7 @@
 This is a web clone of the Nintendo Switch 2 announcement made in Vue.js for educational purposes.
 
 ![Nintendo Switch 2](https://www.nintendo.com/successor/en-us/sns2.png)
+[Demo page](https://dainty-pika-231bcd.netlify.app/)
 
 ## Table of Contents
 
