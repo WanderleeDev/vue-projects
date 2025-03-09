@@ -12,7 +12,7 @@
     </p>
     <v-btn
       class="mt-8 bg-red-600"
-      @click="router.push('/exercises')"
+      @click="router.push('/dashboard')"
       color="#5865f2"
       append-icon="mdi-xml"
       >Start Coding</v-btn

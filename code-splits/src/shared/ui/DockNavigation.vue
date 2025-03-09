@@ -10,15 +10,38 @@
           <RouterLink class="transition-colors" to="/" active-class="active">
             <v-btn variant="text" color="white" class="text-white"> Home </v-btn>
           </RouterLink>
-          <RouterLink class="transition-colors" to="/exercises" active-class="active">
-            <v-btn variant="text" color="white" class="text-white"> Exercises </v-btn>
+          <RouterLink class="transition-colors" to="/dashboard" active-class="active">
+            <v-btn variant="text" color="white" class="text-white"> dashboard </v-btn>
           </RouterLink>
-          <RouterLink class="transition-colors" to="/login" active-class="active">
+          <RouterLink
+            v-if="!authStore.store.isLoggedIn"
+            class="transition-colors"
+            to="/auth/login"
+            active-class="active"
+          >
             <v-btn variant="text" color="white" class="text-white"> login </v-btn>
           </RouterLink>
         </div>
 
-        <div class="mt-2 md:mt-0">
+        <div class="mt-2 md:mt-0 flex gap-8">
+          <div class="flex gap-2">
+            <v-btn
+              @click="router.back"
+              size="x-small"
+              title="go back"
+              rounded="lg"
+              icon="mdi-arrow-left"
+              color="indigo"
+            />
+            <v-btn
+              @click="router.forward"
+              size="x-small"
+              title="go forward"
+              rounded="lg"
+              icon="mdi-arrow-right"
+              color="indigo"
+            />
+          </div>
           <RouterLink class="block" to="redirect/github" :style="{ background: '#5865f2' }">
             <v-btn color="white" variant="text" append-icon="mdi-github"> GitHub </v-btn>
           </RouterLink>
@@ -30,8 +53,11 @@
 
 <script setup lang="ts">
 import { computed, onMounted, onUnmounted, ref } from 'vue'
-import { RouterLink } from 'vue-router'
+import { RouterLink, useRouter } from 'vue-router'
+import { useAuthStore } from '@/modules/auth/store'
 
+const authStore = useAuthStore()
+const router = useRouter()
 const isVisible = ref(false)
 const navClasses = computed(() =>
   isVisible.value ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0',

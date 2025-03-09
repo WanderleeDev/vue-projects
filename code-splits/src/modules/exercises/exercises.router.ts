@@ -1,12 +1,12 @@
 import type { RouteRecordRaw } from 'vue-router'
 
-export const exercisesRouter: RouteRecordRaw[] = [
+export const exercisedRouter: RouteRecordRaw[] = [
   {
-    path: '',
-    component: () => import('../../views/ExercisesView.vue'),
+    path: 'exercises',
+    component: () => import('./view/ExercisesView.vue'),
   },
   {
-    path: ':id',
-    component: () => import('../../views/ExerciseInfoView.vue'),
+    path: 'exercises/:id',
+    component: () => import('./view/ExerciseInfoView.vue'),
   },
 ]

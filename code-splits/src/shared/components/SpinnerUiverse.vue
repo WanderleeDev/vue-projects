@@ -4,7 +4,9 @@
     <div
       class="w-16 h-16 border-4 border-dashed rounded-full animate-spin border-indigo-500 mx-auto"
     ></div>
-    <h2 class="text-zinc-800 dark:text-zinc-800 mt-4 font-semibold">Loading...</h2>
+    <h2 v-if="!onlyLoader" class="text-zinc-800 dark:text-zinc-800 mt-4 font-semibold">
+      Loading...
+    </h2>
     <p class="text-zinc-800 dark:text-zinc-800 mt-4 font-semibold" v-if="message">
       redirecting to {{ message }}
     </p>
@@ -14,5 +16,6 @@
 <script lang="ts" setup>
 defineProps<{
   message?: string
+  onlyLoader: boolean
 }>()
 </script>

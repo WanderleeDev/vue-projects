@@ -27,13 +27,17 @@
     "@tailwindcss/vite": "^4.0.9",
     "@tanstack/vue-query": "^5.67.1",
     "@tanstack/vue-query-devtools": "^5.67.1",
+    "@vee-validate/zod": "^4.15.0",
     "@wdns/vue-code-block": "^2.3.5",
     "pinia": "^3.0.1",
     "tailwindcss": "^4.0.9",
+    "vee-validate": "^4.15.0",
     "vue": "^3.5.13",
     "vue-multiselect": "^3.2.0",
     "vue-router": "^4.5.0",
-    "vuetify": "^3.7.0-beta.1"
+    "vue-sonner": "^1.3.0",
+    "vuetify": "^3.7.0-beta.1",
+    "zod": "^3.24.2"
   },
   "devDependencies": {
     "@playwright/test": "^1.50.1",
