@@ -1,11 +1,12 @@
 import { defineStore } from 'pinia'
-import type { AuthState } from '../interface/Auth.interface'
 import { reactive } from 'vue'
-import { safeInject } from '@/shared/utils/safeInject'
 import { AUTH_API_SERVICE } from '../services/auth.service'
-import type { LoginPayload } from '../schemas/login.schema'
+import { safeInject } from '@/shared/utils/safeInject'
 import { handleToastError } from '@/shared/utils/handleError'
+import type { LoginPayload } from '../schemas/login.schema'
+import type { AuthState } from '../interface/Auth.interface'
 import type { OAuthProvider } from '../interface/AuthApi.interface'
+import { useRouter } from 'vue-router'
 
 const ID_STORE = 'auth'
 
@@ -17,6 +18,7 @@ const NULL_AUTH: AuthState = Object.freeze({
 
 export const useAuthStore = defineStore(ID_STORE, () => {
   const authService = safeInject(AUTH_API_SERVICE)
+  const router = useRouter()
   const store: AuthState = reactive({ ...NULL_AUTH })
 
   function patchState(state: Partial<AuthState>) {
@@ -61,6 +63,7 @@ export const useAuthStore = defineStore(ID_STORE, () => {
   async function getSessionUser() {
     try {
       const { refresh_token, access_token } = await authService.getSession()
+
       patchState({
         isLoggedIn: true,
         token: access_token,
@@ -68,12 +71,15 @@ export const useAuthStore = defineStore(ID_STORE, () => {
       })
     } catch (e) {
       handleToastError(e)
+      router.push('/auth/login')
+      patchState({ ...NULL_AUTH })
     }
   }
 
   async function initializeStore() {
     try {
       await authService.getSession()
+
       patchState({ isLoggedIn: true })
     } catch {
       patchState({ isLoggedIn: false })

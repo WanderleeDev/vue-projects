@@ -7,7 +7,5 @@ import '@mdi/font/css/materialdesignicons.css'
 export default createVuetify({
   components,
   directives,
-  theme: {
-    defaultTheme: 'light',
-  },
+  theme: { defaultTheme: 'light' },
 })

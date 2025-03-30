@@ -7,10 +7,10 @@
     <div class="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6">
       <v-btn
         class="group overflow-hidden mx-auto"
-        @click="updateBackgroundImage(image)"
+        v-for="(image, i) in images"
+        @click="updateImage(image)"
         height="200"
         width="250"
-        v-for="(image, i) in images"
         :key="image"
         :title="`Apply image ${i + 1}`"
       >
@@ -34,8 +34,7 @@
 import ImageUploader from '../components/ImageUploader.vue'
 import { useSettingStore } from '../store'
 
-const { updateBackgroundImage } = useSettingStore()
-
+const settingStore = useSettingStore()
 const images = [
   'https://res.cloudinary.com/dy8gpozi6/image/upload/w_1000,ar_16:9,c_fill,g_auto,e_sharpen/v1731553760/background6_c84sqk.webp',
   'https://res.cloudinary.com/dy8gpozi6/image/upload/w_1000,ar_16:9,c_fill,g_auto,e_sharpen/v1731553822/background4_oa6osl.webp',
@@ -47,4 +46,6 @@ const images = [
   'https://res.cloudinary.com/dy8gpozi6/image/upload/w_1000,ar_16:9,c_fill,g_auto,e_sharpen/v1731553762/background8_y1qfwe.webp',
   'https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg',
 ]
+
+const updateImage = (img: string) => (settingStore.backgroundImage = img)
 </script>

@@ -16,6 +16,6 @@
 <script lang="ts" setup>
 defineProps<{
   message?: string
-  onlyLoader: boolean
+  onlyLoader?: boolean
 }>()
 </script>

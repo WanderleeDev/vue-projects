@@ -1,6 +1,6 @@
 <template>
   <v-card
-    class="mb-2 w-[min(100%,25rem)]"
+    class="mb-2 card"
     density="compact"
     :prepend-avatar="author_image || '/unknown-user.webp'"
     :subtitle="author"
@@ -25,23 +25,43 @@
     </v-card-text>
 
     <template v-slot:actions>
-      <v-btn @click="router.push(`/dashboard/exercises/${id}`)" color="primary" variant="text"
+      <v-btn @click="router.push(`/dashboard/exercises/${id}`)" color="indigo" variant="text"
         >View More</v-btn
       >
-      <v-btn @click="favoriteToggle()" color="primary" variant="text" icon="mdi-heart" />
+      <v-btn
+        v-if="authStore.store.isLoggedIn"
+        @click="favoriteToggle()"
+        color="indigo"
+        variant="text"
+        icon="mdi-heart"
+      />
     </template>
   </v-card>
 </template>
 
 <script lang="ts" setup>
+import { useAuthStore } from '@/modules/auth/store'
 import type { Exercise } from '../../../../types'
 import { useRouter } from 'vue-router'
 
 defineProps<Exercise>()
 
 const router = useRouter()
-
+const authStore = useAuthStore()
 const favoriteToggle = () => {
+  if (!authStore.store.isLoggedIn) return
+
   console.log('add')
 }
 </script>
+
+<style>
+.card {
+  width: min(100%, 25rem);
+  transition: transform 0.2s linear;
+
+  &:hover {
+    transform: translateY(-0.5rem);
+  }
+}
+</style>

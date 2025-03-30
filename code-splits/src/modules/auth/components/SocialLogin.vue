@@ -16,7 +16,7 @@
 
 <script setup lang="ts">
 import type { SocialIcon } from '../interface/SocialIcon.interface'
-import DiscordIcon from '@/shared/components/DiscordIcon.vue'
+import DiscordIcon from '@/modules/auth/components/DiscordIcon.vue'
 import type { OAuthProvider } from '../interface/AuthApi.interface'
 import { useAuthStore } from '../store'
 

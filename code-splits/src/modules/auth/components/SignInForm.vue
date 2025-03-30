@@ -32,7 +32,7 @@
         :append-inner-icon="showPassword ? 'mdi-eye-off' : 'mdi-eye'"
         @click:append-inner="showPassword = !showPassword"
       ></v-text-field>
-
+      <!--  -->
       <v-btn
         :disabled="!meta.valid || isSubmitting"
         :loading
@@ -48,12 +48,12 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
 import SocialLogin from './SocialLogin.vue'
+import { ref } from 'vue'
 import { useField, useForm } from 'vee-validate'
 import { validationLoginSchema, loginSchema } from '../schemas/login.schema'
 import { useAuthStore } from '../store'
-import { handleToastError } from '@/shared/utils/handleError'
+import router from '@/router'
 
 const authStore = useAuthStore()
 const { handleSubmit, meta, isSubmitting, resetForm } = useForm({
@@ -74,13 +74,10 @@ const onSubmit = handleSubmit(async (values) => {
 
   if (!parseValues.success) return
 
-  try {
-    await authStore.login(parseValues.data)
-    resetForm()
-  } catch (e) {
-    handleToastError(e)
-  } finally {
-    loading.value = false
-  }
+  await authStore.signInUser(parseValues.data)
+  router.push('/dashboard/exercises')
+
+  resetForm()
+  loading.value = false
 })
 </script>

@@ -91,10 +91,12 @@ const onSubmit = handleSubmit(async (values) => {
   if (!parseValues.success) return
 
   try {
-    await authService.signUp({
+    const data = await authService.signUp({
       email: parseValues.data.email,
       password: parseValues.data.password,
     })
+
+    console.log(data)
 
     hasVerifiedEmail.value = true
   } catch (e) {

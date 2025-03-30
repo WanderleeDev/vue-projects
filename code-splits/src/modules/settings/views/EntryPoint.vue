@@ -4,7 +4,7 @@
       <RouterLink :to="path">
         <v-card class="relative group" :text :title>
           <v-icon
-            class="opacity-10 group-hover:-translate-x-16 top-2/4 -translate-y-2/4 transition-all bottom-0 right-2 scale-[3]"
+            class="opacity-10 group-hover:-translate-x-16 top-2/4 -translate-y-2/4 transition-transform bottom-0 right-2 scale-[3]"
             style="position: absolute"
             :icon="prependIcon"
           ></v-icon>

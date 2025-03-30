@@ -4,6 +4,7 @@ import { exercisedRouter } from '@/modules/exercises/exercises.router'
 import { profileRouter } from '@/modules/profile/profile.router'
 import { authRouter } from '@/modules/auth/auth.router'
 import { favoritesRouter } from '@/modules/favorites/favorites.router'
+import { useAuthStore } from '@/modules/auth/store'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -20,6 +21,7 @@ const router = createRouter({
       children: [
         {
           path: '',
+          name: 'exercises',
           redirect: '/dashboard/exercises',
         },
         ...exercisedRouter,
@@ -36,6 +38,7 @@ const router = createRouter({
     ...authRouter,
     {
       path: '/redirect/:to',
+      name: 'redirect',
       beforeEnter() {
         location.href = 'https://github.com/WanderleeDev'
       },
@@ -47,6 +50,30 @@ const router = createRouter({
       component: () => import('../views/NotFoundView.vue'),
     },
   ],
+})
+
+router.beforeEach(async (to, from, next) => {
+  const authStore = useAuthStore()
+  const isRequiresAuth = Boolean(to.meta['requiresAuth'])
+  const isUser = authStore.store.isLoggedIn && to.meta['guestOnly']
+  const isLogin = authStore.store.isLoggedIn
+
+  if (isUser) return next(from.fullPath)
+
+  if (!isRequiresAuth) return next()
+
+  if (authStore.store.isLoggedIn && isRequiresAuth) return next()
+
+  await authStore.getSessionUser()
+
+  if (!authStore.store.isLoggedIn) {
+    return next({
+      path: '/auth/login',
+      query: { redirect: to.fullPath },
+    })
+  }
+
+  next()
 })
 
 export default router

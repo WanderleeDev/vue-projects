@@ -4,13 +4,17 @@
     image="https://res.cloudinary.com/dy8gpozi6/image/upload/v1741139794/banner_vjiald.webp"
   >
     <div class="absolute inset-0 bg-black/40 z-0"></div>
-    <v-card-title class="text-h4 text-white mb-4 z-10"> New Here? </v-card-title>
+    <div class="bg-black/40 pa-6 backdrop-blur-xs rounded-md">
+      <v-card-title class="text-h4 text-white mb-4 z-10"> New Here? </v-card-title>
 
-    <v-card-text class="text-white mb-6 z-10">
-      Sign up and discover a great amount of new opportunities!
-    </v-card-text>
+      <v-card-text class="text-white mb-6 z-10">
+        Sign up and discover a great amount of new opportunities!
+      </v-card-text>
 
-    <v-btn @click="router.push('signup')" variant="elevated" color="indigo"> Sign Up </v-btn>
+      <v-btn @click="router.push('/auth/signup')" variant="elevated" color="indigo">
+        Sign Up
+      </v-btn>
+    </div>
   </v-card>
 </template>
 

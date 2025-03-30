@@ -21,6 +21,11 @@
     "supabase:types": "bunx supabase gen types typescript --project-id drzgoygxjbqjkievgmfi --schema public > types/supabase.ts"
   },
   "dependencies": {
+    "@fontsource-variable/open-sans": "^5.2.5",
+    "@fontsource-variable/playfair": "^5.2.5",
+    "@fontsource-variable/roboto": "^5.2.5",
+    "@fontsource-variable/source-code-pro": "^5.2.5",
+    "@fontsource/lato": "^5.2.5",
     "@formkit/vue": "^1.6.9",
     "@mdi/font": "^7.4.47",
     "@supabase/supabase-js": "^2.49.1",
@@ -28,6 +33,7 @@
     "@tanstack/vue-query": "^5.67.1",
     "@tanstack/vue-query-devtools": "^5.67.1",
     "@vee-validate/zod": "^4.15.0",
+    "@vueuse/core": "^12.8.2",
     "@wdns/vue-code-block": "^2.3.5",
     "pinia": "^3.0.1",
     "tailwindcss": "^4.0.9",

@@ -33,6 +33,10 @@ export class AuthApiService implements AuthApi {
     if (error) throw error
     if (!data) throw new Error('No data returned from sign up data')
 
+    const isRepeatEmail = data.user?.identities?.length === 0
+
+    if (isRepeatEmail) throw new Error('Mail is already in use')
+
     return data
   }
 

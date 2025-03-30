@@ -14,4 +14,4 @@ export const loginSchema = z.object({
 })
 
 export type LoginPayload = z.infer<typeof loginSchema>
-export const validationLoginSchema = toTypedSchema(loginSchema)
+// export const validationLoginSchema = toTypedSchema(loginSchema)

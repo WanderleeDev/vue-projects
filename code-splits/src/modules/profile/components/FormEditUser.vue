@@ -1,70 +1,72 @@
 <template>
-  <v-form @submit.prevent="onSubmit()">
-    <v-container>
-      <v-row>
-        <v-col cols="12" md="6">
-          <v-text-field
-            v-model="username"
-            :error-messages="usernameError"
-            label="User Name"
-            variant="outlined"
-          ></v-text-field>
-        </v-col>
+  <v-card>
+    <v-form @submit.prevent="onSubmit()">
+      <v-container>
+        <v-row>
+          <v-col cols="12" md="6">
+            <v-text-field
+              v-model="username"
+              :error-messages="usernameError"
+              label="User Name"
+              variant="outlined"
+            ></v-text-field>
+          </v-col>
 
-        <v-col cols="12" md="6">
-          <v-text-field
-            v-model="email"
-            :error-messages="emailError"
-            label="Email Address"
-            type="email"
-            variant="outlined"
-          ></v-text-field>
-        </v-col>
+          <v-col cols="12" md="6">
+            <v-text-field
+              v-model="email"
+              :error-messages="emailError"
+              label="Email Address"
+              type="email"
+              variant="outlined"
+            ></v-text-field>
+          </v-col>
 
-        <v-col cols="12" md="6">
-          <v-text-field
-            v-model="firstName"
-            :error-messages="firstNameError"
-            label="First Name"
-            variant="outlined"
-          ></v-text-field>
-        </v-col>
+          <v-col cols="12" md="6">
+            <v-text-field
+              v-model="firstName"
+              :error-messages="firstNameError"
+              label="First Name"
+              variant="outlined"
+            ></v-text-field>
+          </v-col>
 
-        <v-col cols="12" md="6">
-          <v-text-field
-            v-model="lastName"
-            :error-messages="lastNameError"
-            label="Last Name"
-            variant="outlined"
-          ></v-text-field>
-        </v-col>
+          <v-col cols="12" md="6">
+            <v-text-field
+              v-model="lastName"
+              :error-messages="lastNameError"
+              label="Last Name"
+              variant="outlined"
+            ></v-text-field>
+          </v-col>
 
-        <v-col cols="12">
-          <v-textarea
-            no-resize
-            v-model="about"
-            :error-messages="aboutError"
-            label="About Me"
-            variant="outlined"
-            rows="4"
-          ></v-textarea>
-        </v-col>
-        <v-col>
-          <v-btn
-            :disabled="!meta.valid || isSubmitting"
-            :loading
-            append-icon="mdi-pencil"
-            color="indigo"
-            size="large"
-            type="submit"
-            block
-          >
-            Edit
-          </v-btn>
-        </v-col>
-      </v-row>
-    </v-container>
-  </v-form>
+          <v-col cols="12">
+            <v-textarea
+              no-resize
+              v-model="about"
+              :error-messages="aboutError"
+              label="About Me"
+              variant="outlined"
+              rows="4"
+            ></v-textarea>
+          </v-col>
+          <v-col>
+            <v-btn
+              :disabled="!meta.valid || isSubmitting"
+              :loading
+              append-icon="mdi-pencil"
+              color="indigo"
+              size="large"
+              type="submit"
+              block
+            >
+              Edit
+            </v-btn>
+          </v-col>
+        </v-row>
+      </v-container>
+    </v-form>
+  </v-card>
 </template>
 
 <script setup lang="ts">
@@ -77,10 +79,11 @@ import { ref } from 'vue'
 
 const userStore = useProfileStore()
 const { handleSubmit, meta, isSubmitting } = useForm({
-  initialValues: userStore.$state,
+  initialValues: {},
   validationSchema: validationProfileSchema,
 })
 const profileApiService = safeInject(PROFILE_API_SERVICE)
+const emit = defineEmits(['clicked'])
 const loading = ref(false)
 
 const { value: username, errorMessage: usernameError } = useField('username')
@@ -100,6 +103,7 @@ const onSubmit = handleSubmit(async (values) => {
   try {
     const updatedData = await profileApiService.updateProfile(parsedValues.data)
     userStore.updateUser(updatedData)
+    emit('clicked', false)
   } catch (e) {
     console.log(e)
   } finally {

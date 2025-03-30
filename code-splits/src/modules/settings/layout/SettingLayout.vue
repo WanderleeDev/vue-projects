@@ -1,18 +1,14 @@
 <template>
-  <v-empty-state
-    class="pa-0"
-    :headline="`Welcome${' ' + user.firstName}`"
-    icon="$vuetify"
-    title="Customize your experience to your liking"
-  >
-    <v-container class="pa-0">
-      <slot />
+  <v-empty-state class="pa-0 py-8" :headline="`Welcome${' ' + user.firstName}`">
+    <v-container class="pa-0 pt-8">
+      <RouterView />
     </v-container>
   </v-empty-state>
 </template>
 
 <script lang="ts" setup>
-import { useUserStore } from '@/modules/profile/store'
+import { useProfileStore } from '@/modules/profile/store'
+import { RouterView } from 'vue-router'
 
-const user = useUserStore()
+const user = useProfileStore()
 </script>

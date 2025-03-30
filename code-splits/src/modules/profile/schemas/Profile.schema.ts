@@ -15,4 +15,6 @@ export const imageProfile = z.object({
 
 export const validationProfileSchema = toTypedSchema(profileBaseSchema)
 
+// export type ProfileCardInfo = Omit<ProfileType, 'email'>
 export type ProfileType = z.infer<typeof profileBaseSchema> & z.infer<typeof imageProfile>
+export type ProfileBaseInfo = Omit<ProfileType, 'email' | 'image'>

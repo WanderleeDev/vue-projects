@@ -4,7 +4,7 @@
       <v-icon icon="mdi-progress-upload" class="opacity-80" />
       Too few images?
     </h2>
-    <div class="flex flex-wrap gap-4 items-center" v-if="authStore.isAuthenticated">
+    <div class="flex flex-wrap gap-4 items-center" v-if="authStore.store.isLoggedIn">
       <p>Supported valid formats (PNG, JPG, WEBP, AVIF)</p>
       <v-btn color="#5865f2" v-on:click="openUploadWidget"> Upload image</v-btn>
     </div>
@@ -19,9 +19,7 @@
           You need to be logged in to upload images. Please login or register to upload images.
         "
     >
-      <RouterLink to="auth/login">
-        <v-btn class="w-full mt-4" color="#5865f2" v-on:click="openUploadWidget">sign in</v-btn>
-      </RouterLink>
+      <v-btn class="w-full mt-4" to="/auth/login" color="#5865f2" link>sign in</v-btn>
     </v-alert>
   </div>
 </template>
@@ -44,7 +42,7 @@ const widget = window.cloudinary.createUploadWidget(
 )
 
 const openUploadWidget = () => {
-  if (!authStore.isLoggedIn) return
+  if (!authStore.store.isLoggedIn) return
 
   widget?.open()
 }

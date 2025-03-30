@@ -1,23 +1,5 @@
-<script setup lang="ts">
-import { ref, computed } from 'vue'
-import type { Font } from '../interfaces/Font.interface'
-import { fonts } from '../constants/fonts'
-
-const listFonts = ref<Font[]>(fonts)
-
-const selectedFont = ref<string>('roboto')
-const customText = ref<string>('Type your text here to preview the font...')
-
-const fontStyle = computed(() => {
-  const font = listFonts.value.find((f) => f.value === selectedFont.value)
-  return {
-    fontFamily: font?.family || 'inherit',
-  }
-})
-</script>
-
 <template>
-  <v-card class="font-customizer pa-6">
+  <v-card class="pa-6" max-width="650">
     <div class="text-center mb-8">
       <h2 class="text-2xl font-bold mb-2">Font Customizer</h2>
       <p class="text-gray-600">Select a font and preview your text in different styles</p>
@@ -44,38 +26,42 @@ const fontStyle = computed(() => {
       />
     </div>
 
-    <v-card class="preview-card pa-6" variant="outlined">
+    <v-card class="pa-6" variant="outlined">
       <h3 class="text-lg font-medium mb-2">Preview</h3>
-      <div class="preview-text" :style="fontStyle">
-        <p class="text-xl mb-4">{{ customText }}</p>
-        <div class="sample-text">
+      <div
+        :style="{
+          fontFamily: currentFont?.family,
+        }"
+      >
+        <p class="text-xl mb-4 text-pretty">{{ customText }}</p>
+        <div class="sample-text mt-8 pt-4 border-t-[.1rem] border-[#e2e8f0] text-[#64748b]">
           <p class="mb-2">The quick brown fox jumps over the lazy dog</p>
           <p class="text-2xl mb-2">ABCDEFGHIJKLMNOPQRSTUVWXYZ</p>
           <p>1234567890!@#$%^&*()</p>
         </div>
       </div>
     </v-card>
+    <v-btn @click="applyFont" color="indigo" class="mt-6 w-full" size="large"> Apply font </v-btn>
   </v-card>
 </template>
 
-<style scoped>
-.font-customizer {
-  max-width: 800px;
-  margin: 0 auto;
-}
+<script setup lang="ts">
+import { ref, computed } from 'vue'
+import type { Font } from '../interfaces/Font.interface'
+import { fonts } from '../constants/fonts'
+import { useSettingStore } from '../store'
 
-.preview-card {
-  background-color: #f8f9fa;
-}
+const { state, $patch } = useSettingStore()
+const listFonts = ref<Font[]>(fonts)
+const selectedFont = ref(state.font.value)
+const customText = ref<string>('Type your text here to preview the font...')
+const currentFont = computed<Font | undefined>(() => {
+  return listFonts.value.find((font) => selectedFont.value === font.value)
+})
 
-.preview-text {
-  transition: all 0.3s ease;
-}
+const applyFont = () => {
+  if (!currentFont.value) return
 
-.sample-text {
-  margin-top: 2rem;
-  padding-top: 1rem;
-  border-top: 1px solid #e2e8f0;
-  color: #64748b;
+  $patch({ font: currentFont.value })
 }
-</style>
+</script>

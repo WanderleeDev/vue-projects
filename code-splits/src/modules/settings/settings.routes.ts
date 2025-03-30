@@ -4,7 +4,7 @@ export const settingRouter: RouteRecordRaw[] = [
   {
     path: 'settings',
     name: 'settings',
-    component: () => import('../../views/SettingsView.vue'),
+    component: () => import('./layout/SettingLayout.vue'),
     children: [
       {
         path: '',

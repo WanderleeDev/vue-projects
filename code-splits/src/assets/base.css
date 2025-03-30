@@ -4,6 +4,9 @@
   box-sizing: border-box;
   margin: 0;
   font-weight: normal;
+  transition:
+    color 10ms linear,
+    backgroundColor 10ms linear;
 }
 
 :where(html, body, #app, main) {

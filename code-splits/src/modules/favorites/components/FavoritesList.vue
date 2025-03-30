@@ -30,7 +30,7 @@ const filteredFavorites = computed(() => {
       :key="favorite.id"
       :title="favorite.title"
       :subtitle="favorite.description"
-      class="mb-2 rounded-lg hover:bg-gray-100"
+      class="mb-2 rounded-lg item"
     >
       <template v-slot:prepend>
         <v-icon icon="mdi-star" color="amber" />
@@ -43,3 +43,13 @@ const filteredFavorites = computed(() => {
     </v-list-item>
   </v-list>
 </template>
+
+<style scoped>
+.item {
+  transition: opacity 0.2s linear;
+
+  &:hover {
+    opacity: 0.7;
+  }
+}
+</style>

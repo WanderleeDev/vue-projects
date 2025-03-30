@@ -27,3 +27,5 @@ export const routesPages: Route[] = [
     path: '/dashboard/contributions',
   },
 ]
+
+export type PublicRoutes = 'exercises' | 'settings'

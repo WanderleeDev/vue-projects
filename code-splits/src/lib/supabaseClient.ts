@@ -1,7 +1,6 @@
 import { getEnv } from '@/shared/utils/getEnv'
 import { createClient } from '@supabase/supabase-js'
 import type { Database } from '../../types/supabase'
-import { useRouter } from 'vue-router'
 
 export const supabase = createClient<Database>(
   getEnv('VITE_PROJECT_URL'),
@@ -15,17 +14,16 @@ export const supabase = createClient<Database>(
   },
 )
 
-export const supabaseStatusListener = () => {
-  const router = useRouter()
-  supabase.auth.onAuthStateChange((event, session) => {
-    console.log({ event, session })
+supabase.auth.onAuthStateChange(async (event, session) => {
+  if (event === 'SIGNED_IN') {
+    console.log(event)
+  }
 
-    if (event === 'SIGNED_IN') {
-      router.push('/dashboard')
-    }
+  if (event === 'SIGNED_OUT') {
+    console.log(event)
+  }
+})
 
-    if (event === 'SIGNED_OUT') {
-      router.push('/')
-    }
-  })
+export function useSupabase() {
+  return { supabase }
 }

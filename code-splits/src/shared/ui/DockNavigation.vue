@@ -24,6 +24,7 @@
         </div>
 
         <div class="mt-2 md:mt-0 flex gap-8">
+          <DarkModeBtn />
           <div class="flex gap-2">
             <v-btn
               @click="router.back"
@@ -55,6 +56,7 @@
 import { computed, onMounted, onUnmounted, ref } from 'vue'
 import { RouterLink, useRouter } from 'vue-router'
 import { useAuthStore } from '@/modules/auth/store'
+import DarkModeBtn from '../components/DarkModeBtn.vue'
 
 const authStore = useAuthStore()
 const router = useRouter()

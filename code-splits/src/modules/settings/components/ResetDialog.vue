@@ -26,7 +26,7 @@
       <template v-slot:actions>
         <v-btn @click="dialogRef?.closeDialog" height="48"> Preserve Settings </v-btn>
 
-        <v-btn @click="resetSettings" class="flex-grow-1" height="48" variant="tonal">
+        <v-btn @click="restoreSettings" class="flex-grow-1" height="48" variant="tonal">
           Reset
         </v-btn>
       </template>
@@ -39,13 +39,13 @@ import BaseDialog from '@/shared/components/BaseDialog.vue'
 import { useSettingStore } from '../store'
 import { ref, useTemplateRef } from 'vue'
 
-const { restoreDefault } = useSettingStore()
+const { resetSettings } = useSettingStore()
 const dialogRef = useTemplateRef('dialogRef')
 const title = ref('Caution')
 const text = ref('Changes made to configuration will be restored to their original values')
 
-const resetSettings = () => {
-  restoreDefault()
+const restoreSettings = () => {
+  resetSettings()
   dialogRef.value?.closeDialog()
 }
 </script>
