@@ -1,12 +1,13 @@
 const descriptionApp = "Shorten and share links easily with ShortenLink.";
 const titleApp = "ShortenLink - Shorten your links easily";
+const urlPage = "https://shortenlink-seven.vercel.app/";
 
 export const metadata = {
   titleTemplate: "ShortenLink - %s",
   htmlAttrs: { lang: "en" },
   link: [
     { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
-    { rel: "canonical", href: "https://vue-showcase-8bg.pages.dev" },
+    { rel: "canonical", href: urlPage },
   ],
   meta: [
     { charset: "utf-8" },
@@ -27,7 +28,7 @@ export const metadata = {
     },
     { property: "og:site_name", content: "ShortenLink" },
     { property: "og:type", content: "website" },
-    { property: "og:url", content: "https://vue-showcase-8bg.pages.dev/" },
+    { property: "og:url", content: urlPage },
 
     // Metadatos para Twitter
     { name: "twitter:card", content: "summary_large_image" },
@@ -43,7 +44,7 @@ export const metadata = {
     },
     {
       name: "twitter:url",
-      content: "https://vue-showcase-8bg.pages.dev/",
+      content: urlPage,
     },
     { name: "twitter:domain", content: "vue-showcase-8bg.pages.dev" },
   ],

@@ -23,5 +23,6 @@ export default defineNuxtConfig({
     "@nuxt/image",
     "@nuxt/ui",
     "@vueuse/nuxt",
+    "@sidebase/nuxt-auth",
   ],
 });
